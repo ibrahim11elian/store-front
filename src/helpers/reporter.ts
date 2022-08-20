@@ -2,8 +2,8 @@ import {
   DisplayProcessor,
   SpecReporter,
   StacktraceOption,
-} from "jasmine-spec-reporter";
-import { CustomReporterResult } from "jasmine-spec-reporter/built/spec-reporter";
+} from 'jasmine-spec-reporter';
+import { CustomReporterResult } from 'jasmine-spec-reporter/built/spec-reporter';
 import SuiteInfo = jasmine.JasmineStartedInfo;
 
 class CustomProcessor extends DisplayProcessor {

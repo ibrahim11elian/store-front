@@ -12,3 +12,5 @@ export const db = new Pool({
   password: PG_PASSWORD,
   port: Number(PG_PORT),
 });
+
+db.on('error', (err) => console.error(`database conniction faild: ${err}`));
