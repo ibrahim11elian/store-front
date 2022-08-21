@@ -18,8 +18,9 @@ export default function jwtAuthorize(
     const decoded = jwt.verify(token, TOKEN_SECRET as string) as JwtPayload;
     if (decoded['username'] !== userName) {
       res.status(401).json('User name does not match!');
+    } else {
+      next();
     }
-    next();
   } catch (err) {
     res.status(401);
     res.json('Access denied, invalid token');

@@ -1,4 +1,4 @@
-import { users, USER } from '../../../../models/users';
+import { User, USER } from '../../../../models/users';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
@@ -9,7 +9,7 @@ dotenv.config();
 
 export default async function create(req: Request, res: Response) {
   const newUser: USER = req.body;
-  const user = new users();
+  const user = new User();
   try {
     const result = await user.show(newUser['userName']);
 

@@ -9,7 +9,7 @@ export type USER = {
   password: string;
 };
 
-export class users {
+export class User {
   async create(user: USER): Promise<USER | null> {
     try {
       const conn = await db.connect();
@@ -78,7 +78,6 @@ export class users {
           ? 'UPDATE users SET first_name = $1 WHERE user_name = $2 RETURNING *'
           : 'UPDATE users SET first_name = $1, last_name = $2 WHERE user_name = $3 RETURNING *';
 
-      console.log(sql);
       let vlaues: string[] = [];
       if (!firstName && lastName) {
         vlaues = [lastName, userName];

@@ -1,0 +1,5 @@
+CREATE TABLE orders (
+	id BIGSERIAL PRIMARY KEY NOT NULL,
+	user_name VARCHAR(50) NOT NULL REFERENCES users(user_name),
+	o_status VARCHAR(50) NOT NULL
+);

@@ -1,0 +1,6 @@
+CREATE TABLE order_product (
+	id BIGSERIAL PRIMARY KEY NOT NULL,
+	o_id BIGINT NOT NULL REFERENCES orders(id),
+	p_id BIGINT NOT NULL REFERENCES products(id),
+	quantity BIGINT NOT NULL
+);
