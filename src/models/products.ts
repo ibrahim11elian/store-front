@@ -58,6 +58,22 @@ export class Product {
     }
   }
 
+  // get products by its category
+  async productByCategory(category: string): Promise<PRODUCT[] | null> {
+    try {
+      const conn = await db.connect();
+      const sql = 'SELECT * FROM products WHERE p_category = $1';
+
+      const result = await conn.query(sql, [category]);
+
+      conn.release();
+
+      return result.rows;
+    } catch (error) {
+      throw new Error(`unable to retrieve product: ${error}`);
+    }
+  }
+
   async update(
     productID: number,
     p_name?: string,

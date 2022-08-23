@@ -35,7 +35,7 @@ export class User {
   async index(): Promise<USER[]> {
     try {
       const conn = await db.connect();
-      const sql = 'SELECT (id, user_name, first_name, last_name) FROM users';
+      const sql = 'SELECT id, user_name, first_name, last_name FROM users';
 
       const result = await conn.query(sql);
 
@@ -51,7 +51,7 @@ export class User {
     try {
       const conn = await db.connect();
       const sql =
-        'SELECT (id, user_name, first_name, last_name) FROM users WHERE user_name = $1';
+        'SELECT id, user_name, first_name, last_name FROM users WHERE user_name = $1';
 
       const result = await conn.query(sql, [userName]);
 

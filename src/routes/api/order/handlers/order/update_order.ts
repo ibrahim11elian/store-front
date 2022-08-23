@@ -1,4 +1,4 @@
-import { Order } from '../../../../models/orders';
+import { Order } from '../../../../../models/orders';
 import { Request, Response } from 'express';
 
 // updating a order by request user/:userName/order/:orderID route by put method and update a order if it exists

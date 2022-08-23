@@ -1,4 +1,4 @@
-import { Order } from '../../../../models/orders';
+import { Order } from '../../../../../models/orders';
 import { Request, Response } from 'express';
 
 // get a specific order by request /order/:orderID route by get method and return a order if exist

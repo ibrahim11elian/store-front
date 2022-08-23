@@ -1,4 +1,4 @@
-import { Order } from '../../../../models/orders';
+import { Order } from '../../../../../models/orders';
 import { Request, Response } from 'express';
 
 // creating a new order by request user/:userName/order route by post method and return a new order

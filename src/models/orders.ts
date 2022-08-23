@@ -6,6 +6,13 @@ export type ORDER = {
   status: 'active' | 'complete';
 };
 
+export type ORDER_PRODUCT = {
+  id?: number;
+  o_id: number;
+  p_id: number;
+  quantity: string;
+};
+
 export class Order {
   async create(userName: string, status: string): Promise<ORDER | null> {
     try {
@@ -83,7 +90,7 @@ export class Order {
     }
   }
 
-  // add product to open order
+  // add product to existing order
   async addProduct(
     orderID: number,
     productID: number,
@@ -105,7 +112,7 @@ export class Order {
   }
 
   // get all products in all orders "for admins"
-  async getProducts(): Promise<object[] | null> {
+  async getProducts(): Promise<ORDER_PRODUCT[] | null> {
     try {
       const conn = await db.connect();
       const sql = 'SELECT * FROM order_product';
@@ -114,19 +121,19 @@ export class Order {
 
       conn.release();
 
-      return result.rows[0];
+      return result.rows;
     } catch (error) {
       throw new Error(`unable to get products: ${error}`);
     }
   }
 
-  // get all products that belong to specific order
-  async getOrderProduct(orderID: number): Promise<object | null> {
+  // get product that belongs to specific order
+  async getOrderProduct(orderProductID: number): Promise<ORDER_PRODUCT | null> {
     try {
       const conn = await db.connect();
-      const sql = 'SELECT * FROM order_product WHERE o_id = $1';
+      const sql = 'SELECT * FROM order_product WHERE id = $1';
 
-      const result = await conn.query(sql, [orderID]);
+      const result = await conn.query(sql, [orderProductID]);
 
       conn.release();
 
@@ -138,16 +145,15 @@ export class Order {
 
   // update quantity of spacific product in order
   async updateOrderProduct(
-    orderID: number,
-    productID: number,
+    orderProductID: number,
     quantity: number
   ): Promise<ORDER> {
     try {
       const conn = await db.connect();
       const sql =
-        'UPDATE order_product SET quantity = $1 WHERE o_id = $2 AND p_id = $3 RETURNING *';
+        'UPDATE order_product SET quantity = $1 WHERE id = $2 RETURNING *';
 
-      const result = await conn.query(sql, [quantity, orderID, productID]);
+      const result = await conn.query(sql, [quantity, orderProductID]);
 
       conn.release();
 
@@ -158,37 +164,18 @@ export class Order {
   }
 
   // delete spacific product in order
-  async deleteOrderProduct(
-    orderID: number,
-    productID: number
-  ): Promise<string> {
+  async deleteOrderProduct(orderProductID: number): Promise<string> {
     try {
       const conn = await db.connect();
-      const sql = 'DELETE FROM order_product WHERE o_id = $1 AND p_id = $2';
+      const sql = 'DELETE FROM order_product WHERE id = $1';
 
-      await conn.query(sql, [orderID, productID]);
+      await conn.query(sql, [orderProductID]);
 
       conn.release();
 
-      return `product in order deleted with ID: ${productID}`;
+      return `product in order deleted with ID: ${orderProductID}`;
     } catch (error) {
       throw new Error(`unable to delete order product: ${error}`);
-    }
-  }
-
-  // delete all products in order
-  async deleteAllOrderProducts(orderID: number): Promise<string> {
-    try {
-      const conn = await db.connect();
-      const sql = 'DELETE FROM order_product WHERE o_id = $1';
-
-      await conn.query(sql, [orderID]);
-
-      conn.release();
-
-      return `All products in order are deleted with ID: ${orderID}`;
-    } catch (error) {
-      throw new Error(`unable to delete order products: ${error}`);
     }
   }
 }

@@ -1,4 +1,5 @@
 import { Product } from '../../../../models/products';
+import { deleteAllOrderProducts } from '../../order/handlers/order/delete_order';
 import { Request, Response } from 'express';
 
 // deleting a pruduct by request /product/:productID route by delete method and delete a product if exist
@@ -9,6 +10,7 @@ export default async function deleteProduct(req: Request, res: Response) {
   try {
     const result = await product.show(Number(productID));
     if (result) {
+      await deleteAllOrderProducts(Number(productID), 'p');
       const deleted = await product.delete(Number(productID));
       res.status(200).json({ msg: deleted });
     } else {
