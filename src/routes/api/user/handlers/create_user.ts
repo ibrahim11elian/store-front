@@ -11,14 +11,14 @@ export default async function create(req: Request, res: Response) {
   const newUser: USER = req.body;
   const user = new User();
   try {
-    const result = await user.show(newUser['userName']);
+    const result = await user.show(newUser['user_name']);
 
     if (result) {
-      res.status(400).json({ msg: `${newUser['userName']} already exist` });
+      res.status(400).json({ msg: `${newUser['user_name']} already exist` });
     } else {
       await user.create(newUser);
       const token = jwt.sign(
-        { username: newUser['userName'] },
+        { username: newUser['user_name'] },
         process.env.TOKEN_SECRET as string
       );
 

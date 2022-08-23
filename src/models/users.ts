@@ -3,10 +3,10 @@ import { hash } from '../utilities/password_hashing';
 
 export type USER = {
   id?: number;
-  userName: string;
-  firstName: string;
-  lastName: string;
-  password: string;
+  user_name: string;
+  first_name: string;
+  last_name: string;
+  password_digest?: string;
 };
 
 export class User {
@@ -14,13 +14,13 @@ export class User {
     try {
       const conn = await db.connect();
       const sql =
-        'INSERT INTO users (user_name,first_name,last_name,password_digest) VALUES ($1, $2, $3, $4) RETURNING *';
+        'INSERT INTO users (user_name,first_name,last_name,password_digest) VALUES ($1, $2, $3, $4) RETURNING id, user_name, first_name, last_name';
 
-      const password_digest = hash(user.password);
+      const password_digest = hash(user.password_digest as string);
       const result = await conn.query(sql, [
-        user.userName,
-        user.firstName,
-        user.lastName,
+        user.user_name,
+        user.first_name,
+        user.last_name,
         password_digest,
       ]);
 
@@ -28,7 +28,7 @@ export class User {
 
       return result.rows[0];
     } catch (error) {
-      throw new Error(`unable to create user (${user.userName}): ${error}`);
+      throw new Error(`unable to create user (${user.user_name}): ${error}`);
     }
   }
 
@@ -47,7 +47,7 @@ export class User {
     }
   }
 
-  async show(userName: USER['userName']): Promise<USER | null> {
+  async show(userName: USER['user_name']): Promise<USER | null> {
     try {
       const conn = await db.connect();
       const sql =
@@ -65,18 +65,18 @@ export class User {
 
   //   for just update the first and last name
   async update(
-    userName: USER['userName'],
-    firstName?: USER['firstName'],
-    lastName?: USER['lastName']
+    userName: USER['user_name'],
+    firstName?: USER['first_name'],
+    lastName?: USER['last_name']
   ): Promise<USER> {
     try {
       const conn = await db.connect();
       const sql =
         !firstName && lastName
-          ? 'UPDATE users SET last_name = $1 WHERE user_name = $2 RETURNING *'
+          ? 'UPDATE users SET last_name = $1 WHERE user_name = $2 RETURNING id, user_name, first_name, last_name'
           : firstName && !lastName
-          ? 'UPDATE users SET first_name = $1 WHERE user_name = $2 RETURNING *'
-          : 'UPDATE users SET first_name = $1, last_name = $2 WHERE user_name = $3 RETURNING *';
+          ? 'UPDATE users SET first_name = $1 WHERE user_name = $2 RETURNING id, user_name, first_name, last_name'
+          : 'UPDATE users SET first_name = $1, last_name = $2 WHERE user_name = $3 RETURNING id, user_name, first_name, last_name';
 
       let vlaues: string[] = [];
       if (!firstName && lastName) {
@@ -96,7 +96,7 @@ export class User {
     }
   }
 
-  async delete(userName: USER['userName']): Promise<string> {
+  async delete(userName: USER['user_name']): Promise<string> {
     try {
       const conn = await db.connect();
       const sql = 'DELETE FROM users WHERE user_name = $1';

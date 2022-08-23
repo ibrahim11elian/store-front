@@ -2,9 +2,9 @@ import { db } from '../database';
 
 export type PRODUCT = {
   id?: number;
-  name: string;
-  price: number;
-  category: string;
+  p_name: string;
+  p_price: number;
+  p_category: string;
 };
 
 export class Product {
@@ -15,16 +15,16 @@ export class Product {
         'INSERT INTO products (p_name,p_price,p_category) VALUES ($1, $2, $3) RETURNING *';
 
       const result = await conn.query(sql, [
-        product.name,
-        product.price,
-        product.category,
+        product.p_name,
+        product.p_price,
+        product.p_category,
       ]);
 
       conn.release();
 
       return result.rows[0];
     } catch (error) {
-      throw new Error(`unable to create product (${product.name}): ${error}`);
+      throw new Error(`unable to create product (${product.p_name}): ${error}`);
     }
   }
 
@@ -97,7 +97,6 @@ export class Product {
           ? 'UPDATE products SET p_price = $1, p_category = $2 WHERE id = $3 RETURNING *'
           : 'UPDATE products SET p_name = $1, p_price = $2, p_category = $3 WHERE id = $4 RETURNING *';
 
-      console.log(sql);
       let vlaues: (number | string)[] = [];
       if (p_name && !p_price && !p_category) {
         vlaues = [p_name, productID];

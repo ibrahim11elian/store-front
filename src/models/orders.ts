@@ -3,7 +3,7 @@ import { db } from '../database';
 export type ORDER = {
   id?: number;
   user_name: string;
-  status: 'active' | 'complete';
+  o_status: 'active' | 'complete';
 };
 
 export type ORDER_PRODUCT = {
@@ -95,7 +95,7 @@ export class Order {
     orderID: number,
     productID: number,
     quantity: number
-  ): Promise<object | null> {
+  ): Promise<ORDER_PRODUCT | null> {
     try {
       const conn = await db.connect();
       const sql =
@@ -147,7 +147,7 @@ export class Order {
   async updateOrderProduct(
     orderProductID: number,
     quantity: number
-  ): Promise<ORDER> {
+  ): Promise<ORDER_PRODUCT> {
     try {
       const conn = await db.connect();
       const sql =
