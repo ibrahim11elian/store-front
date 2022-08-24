@@ -22,7 +22,7 @@ const newProduct: PRODUCT = {
   p_category: 'a',
 };
 
-describe('Delete Order Endpoint', () => {
+describe('Delete Order Product Endpoint', () => {
   beforeAll(async () => {
     const res = await request
       .post(`/api/user`)

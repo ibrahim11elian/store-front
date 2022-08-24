@@ -5,7 +5,6 @@ import { Request, Response } from 'express';
 
 export default async function deleteOrderProduct(req: Request, res: Response) {
   const orderProductID: string = req.params.id;
-  console.log(orderProductID);
 
   const order = new Order();
 

@@ -67,9 +67,6 @@ export class DashboardQueries {
         'SELECT products.p_name AS product_name, sum(order_product.quantity) AS quantity_ordered FROM products INNER JOIN order_product ON products.id = order_product.p_id GROUP BY product_name ORDER BY quantity_ordered DESC LIMIT 5';
 
       const result = await conn.query(sql);
-      console.log(sql);
-
-      console.log(result);
 
       conn.release();
 
