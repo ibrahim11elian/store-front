@@ -1,7 +1,7 @@
 import { Product } from '../../../../models/products';
 import { Request, Response } from 'express';
 
-// get products by its category request /product/:category route by get method and return a products if exist
+// get products by its category request /product/category/:category route by get method and return a products if exist
 
 export default async function ProductsByCategory(req: Request, res: Response) {
   const category: string = req.params.category;
@@ -11,7 +11,7 @@ export default async function ProductsByCategory(req: Request, res: Response) {
     if (result) res.status(200).json(result);
     else {
       res
-        .status(400)
+        .status(404)
         .json({ msg: `can't find products in category (${category})` });
     }
   } catch (error) {
