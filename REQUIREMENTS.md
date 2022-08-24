@@ -20,6 +20,18 @@
 
 ## API Endpoints
 
+<strong>Note:</strong> Response when JWT doesn't be sent.
+
+```
+"Access denied, invalid token"
+```
+
+If user send JWT he don't own when requesting data not his own
+
+```
+"User name does not match!"
+```
+
 #### Users
 
 - Create
