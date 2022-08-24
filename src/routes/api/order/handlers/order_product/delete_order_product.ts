@@ -13,7 +13,7 @@ export default async function deleteOrderProduct(req: Request, res: Response) {
     // checking if order product already exist
     const result = await order.getOrderProduct(Number(orderProductID));
     if (!result) {
-      return res.status(400).json({
+      return res.status(404).json({
         msg: `can't find order product with ID (${orderProductID})`,
       });
     }
