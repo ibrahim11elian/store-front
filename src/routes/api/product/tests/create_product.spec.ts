@@ -18,6 +18,7 @@ describe('Create Product Endpoint', () => {
       .set('Content-type', 'application/json')
       .set('authorization', userToken)
       .send(newProduct);
+
     expect(res.statusCode).toEqual(201);
   });
 

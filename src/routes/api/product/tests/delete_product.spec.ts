@@ -8,12 +8,12 @@ const userToken =
   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFobWVkIiwiaWF0IjoxNjYxMTA3OTMyfQ.tqcnzQT0XXX440IG-OwFOuPjmhAXW4UzdRvfnIvRo9w';
 let pro: PRODUCT;
 const newProduct: PRODUCT = {
-  p_name: 'wwwll',
-  p_price: 50,
-  p_category: 'cvb',
+  p_name: 'rty',
+  p_price: 342,
+  p_category: 'dsa',
 };
 
-describe('Return Product Endpoint', () => {
+describe('Delete product Endpoint', () => {
   beforeAll(async () => {
     const res = await request
       .post(`/api/product`)
@@ -23,18 +23,25 @@ describe('Return Product Endpoint', () => {
 
     pro = res.body.product;
   });
-  it('should return a product by its id', async () => {
-    const res = await request.get(`/api/product/${pro.id}`);
+
+  it('should delete product and its all orders its in', async () => {
+    const res = await request
+      .delete(`/api/product/${pro.id}`)
+      .set('Content-type', 'application/json')
+      .set('authorization', userToken);
 
     expect(res.statusCode).toEqual(200);
   });
 
-  it('should return that product does not exist', async () => {
-    const res = await request.get('/api/product/122');
+  it('should return that product does not exist when delete product', async () => {
+    const res = await request
+      .delete(`/api/product/90`)
+      .set('Content-type', 'application/json')
+      .set('authorization', userToken);
 
-    expect(res.statusCode).toEqual(400);
+    expect(res.statusCode).toEqual(404);
     expect(res.body).toEqual({
-      msg: `can't find product with ID (122)`,
+      msg: `can't find product with ID (90)`,
     });
   });
 });

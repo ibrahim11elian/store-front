@@ -2,12 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import route from './routes/router';
 import cors from 'cors';
-import morgan from 'morgan';
+// import morgan from 'morgan';
 import dotenv from 'dotenv';
 
 dotenv.config();
 export const app: express.Application = express();
-app.use(morgan('tiny'));
+// app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
