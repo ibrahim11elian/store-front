@@ -4,9 +4,11 @@ import { Product } from '../../models/products';
 import { User } from '../../models/users';
 
 const dashboard = new DashboardQueries();
+
 const order = new Order();
 const product = new Product();
 const user = new User();
+
 describe('Dashboard services', () => {
   describe('Define Methods', () => {
     it('should have method to retrive all completed oredrs by user', () => {

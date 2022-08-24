@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// getting enviroment valiables from .env folder
 const {
   PG_HOST,
   PG_USER,
@@ -13,6 +14,7 @@ const {
   NODE_ENV,
 } = process.env;
 
+// database connection
 export const db = new Pool({
   host: PG_HOST,
   user: PG_USER,

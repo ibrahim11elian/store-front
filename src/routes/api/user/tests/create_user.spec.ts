@@ -3,6 +3,7 @@ import { USER } from '../../../../models/users';
 import { app } from '../../../../server';
 
 const request = supertest(app);
+
 export let userToken: string;
 export const newUser: USER = {
   user_name: 'mohmed',

@@ -21,6 +21,7 @@ describe('Delete User Endpoint', () => {
 
     userToken = res.body;
   });
+
   it('should delete user and his all orders by user_name', async () => {
     const res = await request
       .delete(`/api/user/${newUser.user_name}`)
