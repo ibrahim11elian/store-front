@@ -17,6 +17,8 @@ export default async function update(req: Request, res: Response) {
       const updated = await user.update(userName, firstName, lastName);
       res.status(201);
       res.json({ msg: `${userName} data updated`, user: updated });
+    } else {
+      res.status(400).json({ msg: `can't find user (${userName})` });
     }
   } catch (error) {
     res.status(400).json({ msg: `ERR: ${error}` });

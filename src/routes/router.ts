@@ -6,6 +6,7 @@ import product from './api/product';
 import order from './api/order';
 import service from './api/services/index';
 
+// router generator
 const route = Router();
 
 /*
@@ -88,7 +89,7 @@ route.post(
 // get all products in all orders
 route.get('/order/product/all', jwtAuthenticate, order.getAllProducts);
 
-// get product in order by order id and product id
+// get product in order by order product id
 route.get('/order/product/:ID', jwtAuthenticate, order.getOrderProduct);
 
 // update product quantity in specific order for specific user by its id, token required
@@ -111,7 +112,7 @@ route.delete(
     dashboard routes
 */
 
-// get all products in all orders
+// get completed order by user
 route.get(
   '/user/:userName/order/completed',
   jwtAuthenticate,

@@ -8,7 +8,7 @@ export default async function ProductsByCategory(req: Request, res: Response) {
   const product = new Product();
   try {
     const result = await product.productByCategory(category);
-    if (result) res.status(200).json(result);
+    if (result?.length) res.status(200).json(result);
     else {
       res
         .status(404)

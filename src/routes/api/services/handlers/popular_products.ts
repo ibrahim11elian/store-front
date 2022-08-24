@@ -9,7 +9,7 @@ export default async function getPopularProducts(req: Request, res: Response) {
     if (result.length) {
       res.status(200).json(result);
     } else {
-      res.status(404).json({ msg: `there is popular products` });
+      res.status(404).json({ msg: `there is no popular products` });
     }
   } catch (error) {
     res.status(400).json({ err: 'unable to retrive products' });
