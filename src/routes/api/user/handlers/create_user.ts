@@ -9,6 +9,7 @@ dotenv.config();
 
 export default async function create(req: Request, res: Response) {
   const newUser: USER = req.body;
+
   const user = new User();
   try {
     const result = await user.show(newUser['user_name']);

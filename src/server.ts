@@ -6,10 +6,10 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const app: express.Application = express();
+export const app: express.Application = express();
 app.use(morgan('tiny'));
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/api', route);
@@ -20,6 +20,8 @@ app.get('/', (req: express.Request, res: express.Response) => {
   });
 });
 
+// if (!module.parent) {
 app.listen(process.env.PORT, () => {
   console.log(`server is running on http://localhost:${process.env.PORT}`);
 });
+// }
