@@ -32,7 +32,9 @@ describe('Return Product Endpoint', () => {
   it('should return empty list when products does not exist on category', async () => {
     const res = await request.get('/api/product/category/asdfg');
 
-    expect(res.statusCode).toEqual(200);
-    expect(res.body).toEqual([]);
+    expect(res.statusCode).toEqual(404);
+    expect(res.body).toEqual({
+      msg: "can't find products in category (asdfg)",
+    });
   });
 });

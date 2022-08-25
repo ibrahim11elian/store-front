@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import jwtAuthenticate from '../middleware/jwt_authinticate';
 import jwtAuthorize from '../middleware/jwt_authorization';
-import user from './api/user';
-import product from './api/product';
-import order from './api/order';
-import service from './api/services/index';
+import user from './api/user/handlers/user';
+import product from './api/product/handlers/product';
+import order from './api/order/handlers/order';
+import orderProduct from './api/order/handlers/order_product';
+import service from './api/services/handlers/dashboard';
 
 // router generator
 const route = Router();
@@ -23,7 +24,7 @@ route.get('/user', jwtAuthenticate, user.index);
 route.get('/user/:userName', jwtAuthenticate, user.getUser);
 
 // update user data by his user name, user token required
-route.put('/user/:userName', jwtAuthorize, user.updateUser);
+route.put('/user/:userName', jwtAuthorize, user.update);
 
 // delete user by his user name, user token required
 route.delete('/user/:userName', jwtAuthorize, user.deleteUser);
@@ -44,10 +45,10 @@ route.get('/product', product.index);
 route.get('/product/:productID', product.getProduct);
 
 // get product by its category
-route.get('/product/category/:category', product.ProductsByCategory);
+route.get('/product/category/:category', product.productsByCategory);
 
 // update product data by its id, token required
-route.put('/product/:productID', jwtAuthenticate, product.updateProduct);
+route.put('/product/:productID', jwtAuthenticate, product.update);
 
 // delete product by its id, token required
 route.delete('/product/:productID', jwtAuthenticate, product.deleteProduct);
@@ -68,7 +69,7 @@ route.get('/order', jwtAuthenticate, order.index);
 route.get('/order/:orderID', jwtAuthenticate, order.getOrder);
 
 // update order status for specific user by its id, token required
-route.put('/user/:userName/order/:orderID', jwtAuthorize, order.updateOrder);
+route.put('/user/:userName/order/:orderID', jwtAuthorize, order.update);
 
 // delete order for specific user by its id, token required
 route.delete('/user/:userName/order/:orderID', jwtAuthorize, order.deleteOrder);
@@ -83,27 +84,27 @@ route.delete('/user/:userName/order/:orderID', jwtAuthorize, order.deleteOrder);
 route.post(
   '/user/:userName/order/product',
   jwtAuthorize,
-  order.addOrderProduct
+  orderProduct.addOrderProduct
 );
 
 // get all products in all orders
-route.get('/order/product/all', jwtAuthenticate, order.getAllProducts);
+route.get('/order/product/all', jwtAuthenticate, orderProduct.getAllProducts);
 
 // get product in order by order product id
-route.get('/order/product/:ID', jwtAuthenticate, order.getOrderProduct);
+route.get('/order/product/:ID', jwtAuthenticate, orderProduct.getOrderProduct);
 
 // update product quantity in specific order for specific user by its id, token required
 route.put(
   '/user/:userName/order/product/:ID',
   jwtAuthorize,
-  order.updateOrderProduct
+  orderProduct.updateOrderProduct
 );
 
 // delete product in order for specific user by its id, token required
 route.delete(
   '/user/:userName/order/product/:id',
   jwtAuthorize,
-  order.deleteOrderProduct
+  orderProduct.deleteOrderProduct
 );
 
 // ###################################################################
