@@ -41,8 +41,6 @@ Users should be able to:
     │   └───api
     │       ├───order
     │       │   ├───handlers
-    │       │   │   ├───order
-    │       │   │   └───order_product
     │       │   └───tests
     │       ├───product
     │       │   ├───handlers
