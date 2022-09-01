@@ -35,7 +35,7 @@ If user send JWT he don't own when requesting data not his own
 #### Users
 
 - Create
-  - route: `/user` - method: POST
+  - route: `/api/user` - method: POST
   - body:
   ```json
   {
@@ -53,7 +53,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Index [token required]
-  - route: `/user` - method: GET
+  - route: `/api/user` - method: GET
   - success response:
   ```json
   [
@@ -76,7 +76,7 @@ If user send JWT he don't own when requesting data not his own
   { "msg": `can't get users` }
   ```
 - Show [token required]
-  - route: `/user/:userName` - method: GET
+  - route: `/api/user/:userName` - method: GET
   - success response:
   ```json
   {
@@ -122,7 +122,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Update [user token required]
-  - route: `/user/:userName` - method: PUT
+  - route: `/api/user/:userName` - method: PUT
   - body:
   ```json
   {
@@ -149,7 +149,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Delete [user token required]
-  - route: `/user/:userName` - method: DELETE
+  - route: `/api/user/:userName` - method: DELETE
   - success response:
   ```json
   {
@@ -166,7 +166,7 @@ If user send JWT he don't own when requesting data not his own
 #### Products
 
 - Create [token required]
-  - route: `/product` - method: POST
+  - route: `/api/product` - method: POST
   - body:
   ```json
   {
@@ -194,7 +194,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Index
-  - route: `/product` - method: GET
+  - route: `/api/product` - method: GET
   - success response:
   ```json
   [
@@ -223,7 +223,7 @@ If user send JWT he don't own when requesting data not his own
   { "msg": `can't get products` }
   ```
 - Show
-  - route: `/product/:productID` - method: GET
+  - route: `/api/product/:productID` - method: GET
   - success response:
   ```json
   {
@@ -240,7 +240,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Update [token required]
-  - route: `/product/:productID` - method: PUT
+  - route: `/api/product/:productID` - method: PUT
   - body:
   ```json
   {
@@ -268,7 +268,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Delete [token required]
-  - route: `/product/:productID` - method: DELETE
+  - route: `/api/product/:productID` - method: DELETE
   - success response:
   ```json
   {
@@ -282,7 +282,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Top 5 most popular products
-  - route: `/products/popular` - method: GET
+  - route: `/api/products/popular` - method: GET
   - success response:
   ```json
   [
@@ -314,7 +314,7 @@ If user send JWT he don't own when requesting data not his own
   ```
 - Products by category
 
-  - route: `/products/:category` - method: GET
+  - route: `/api/products/:category` - method: GET
   - success response:
 
   ```json
@@ -345,7 +345,7 @@ If user send JWT he don't own when requesting data not his own
 #### Orders
 
 - Create [user token required]
-  - route: `/user/:userName/order` - method: POST
+  - route: `/api/user/:userName/order` - method: POST
   - body:
   ```json
   {
@@ -370,7 +370,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Index [token required]
-  - route: `/order` - method: GET
+  - route: `/api/order` - method: GET
   - success response:
   ```json
   [
@@ -396,7 +396,7 @@ If user send JWT he don't own when requesting data not his own
   { "msg": `can't get orders` }
   ```
 - Show
-  - route: `/order/:orderID` - method: GET
+  - route: `/api/order/:orderID` - method: GET
   - success response:
   ```json
   {
@@ -412,7 +412,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Update [user token required]
-  - route: `/user/:userName/order/:orderID` - method: PUT
+  - route: `/api/user/:userName/order/:orderID` - method: PUT
   - body:
   ```json
   {
@@ -442,7 +442,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Delete [user token required]
-  - route: `/user/:userName/order/:orderID` - method: DELETE
+  - route: `/api/user/:userName/order/:orderID` - method: DELETE
   - success response:
   ```json
   {
@@ -460,7 +460,7 @@ If user send JWT he don't own when requesting data not his own
 
 - Add order product [user token required]
 
-  - route: `/user/:userName/order/product` - method: POST
+  - route: `/api/user/:userName/order/product` - method: POST
   - body:
 
   ```json
@@ -498,7 +498,7 @@ If user send JWT he don't own when requesting data not his own
   ```
 
 - all products in all orders [token required]
-  - route: `/order/product/all` - method: GET
+  - route: `/api/order/product/all` - method: GET
   - success response:
   ```json
   [
@@ -527,7 +527,7 @@ If user send JWT he don't own when requesting data not his own
   { "msg": `can't get data` }
   ```
 - product in order [token required]
-  - route: `/order/product/:ID` - method: GET
+  - route: `/api/order/product/:ID` - method: GET
   - success response:
   ```json
   {
@@ -544,7 +544,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Update produt quantity in order [user token required]
-  - route: `/user/:userName/order/product/:ID` - method: PUT
+  - route: `/api/user/:userName/order/product/:ID` - method: PUT
   - body:
   ```json
   {
@@ -571,7 +571,7 @@ If user send JWT he don't own when requesting data not his own
   ```
 - Delete product in order [user token required]
 
-  - route: `/user/:userName/order/product/:ID` - method: DELETE
+  - route: `/api/user/:userName/order/product/:ID` - method: DELETE
   - success response:
 
   ```json
@@ -589,7 +589,7 @@ If user send JWT he don't own when requesting data not his own
   ```
 
 - Current Order by user [token required]
-  - route: `/user/:userName/order/active` - method: GET
+  - route: `/api/user/:userName/order/active` - method: GET
   - success response:
   ```json
   [
@@ -607,7 +607,7 @@ If user send JWT he don't own when requesting data not his own
   }
   ```
 - Completed Orders by user [token required]
-  - route: `/user/:userName/order/completed` - method: GET
+  - route: `/api/user/:userName/order/completed` - method: GET
   - success response:
   ```json
   [

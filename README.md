@@ -59,7 +59,7 @@ Users should be able to:
 
 ### Setup:
 
-<strong>Stop✋:</strong> Before setup you need to take a look to [REQUIREMENTS](REQUIREMENTS.md) file
+<strong>Stop✋:</strong> Before setup you need to take a look to [REQUIREMENTS](REQUIREMENTS.md) file that has the env file content that you need to create before setup the app
 
 - you have to install all dependencies from:
 
