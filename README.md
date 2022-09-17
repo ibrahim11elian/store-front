@@ -1,7 +1,7 @@
 # Storefront Backend Project
 
-Storefront is an the backend for online shoping.  
-This requires me to architect the database, tables, and columns to fulfill the requirements, create a RESTful API to be accessible to the frontend developer, with tested writen and secure user information with encryption, and provide tokens for integration into the frontend.
+Storefront is a backend for online shopping.  
+This requires me to architect the database, tables, and columns to fulfill the requirements, create a RESTful API to be accessible to the frontend developer, with tested written and secure user information with encryption, and provide tokens for integration into the frontend.
 
 <strong>Note:</strong> This project is project two from the Udacity full stack nano dgree program.
 
